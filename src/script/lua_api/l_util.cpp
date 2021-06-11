@@ -479,6 +479,15 @@ int ModApiUtil::l_sha1(lua_State *L)
 	return 1;
 }
 
+// purchase()
+int ModApiUtil::l_purchase(lua_State *L)
+{
+	NO_MAP_LOCK_REQUIRED;
+	// Android/iOS code goes here
+
+	return 1;
+}
+
 void ModApiUtil::Initialize(lua_State *L, int top)
 {
 	API_FCT(log);
@@ -513,6 +522,7 @@ void ModApiUtil::Initialize(lua_State *L, int top)
 
 	API_FCT(get_version);
 	API_FCT(sha1);
+	API_FCT(purchase);
 
 	LuaSettings::create(L, g_settings, g_settings_path);
 	lua_setfield(L, top, "settings");
@@ -537,6 +547,7 @@ void ModApiUtil::InitializeClient(lua_State *L, int top)
 
 	API_FCT(get_version);
 	API_FCT(sha1);
+	API_FCT(purchase);
 }
 
 void ModApiUtil::InitializeAsync(lua_State *L, int top)
@@ -564,6 +575,7 @@ void ModApiUtil::InitializeAsync(lua_State *L, int top)
 
 	API_FCT(get_version);
 	API_FCT(sha1);
+	API_FCT(purchase);
 
 	LuaSettings::create(L, g_settings, g_settings_path);
 	lua_setfield(L, top, "settings");
