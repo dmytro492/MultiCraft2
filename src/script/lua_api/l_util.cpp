@@ -483,7 +483,14 @@ int ModApiUtil::l_sha1(lua_State *L)
 int ModApiUtil::l_purchase(lua_State *L)
 {
 	NO_MAP_LOCK_REQUIRED;
-	// Android/iOS code goes here
+#ifdef __ANDROID__
+	const std::string item_name = luaL_checkstring(L, 1);
+	const bool ok = porting::purchase(item_name);
+	lua_pushboolean(L, ok);
+#else
+	// Not implemented on non-Android platforms
+	lua_pushnil(L);
+#endif
 
 	return 1;
 }
@@ -580,4 +587,3 @@ void ModApiUtil::InitializeAsync(lua_State *L, int top)
 	LuaSettings::create(L, g_settings, g_settings_path);
 	lua_setfield(L, top, "settings");
 }
-
