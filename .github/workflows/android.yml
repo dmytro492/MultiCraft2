@@ -1,6 +1,6 @@
 name: android
 
-# build on c/cpp changes or workflow changes
+# build on c/cpp changes or workflow changes.
 on:
   push:
     paths:
